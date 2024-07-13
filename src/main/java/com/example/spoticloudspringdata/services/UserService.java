@@ -1,7 +1,6 @@
 package com.example.spoticloudspringdata.services;
 
 import com.example.spoticloudspringdata.entities.User;
-import com.example.spoticloudspringdata.repositories.implementations.UserJpaRepository;
 import com.example.spoticloudspringdata.repositories.implementations.UserRepository;
 import com.example.spoticloudspringdata.schemas.UserCreate;
 import org.springframework.beans.factory.annotation.Autowired;
