@@ -1,6 +1,5 @@
 package com.example.spoticloudspringdata.entities;
 
-import com.example.spoticloudspringdata.entities.compositeId.UserReleaseId;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -10,7 +9,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements SoftDeletable{
     private String username;
     private String email;
     private String password;
@@ -114,8 +113,8 @@ public class User extends BaseEntity {
     }
 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "is_deleted", updatable = false, insertable = false)
-    public Boolean getDeleted() {
+    @Column(name = "is_deleted", insertable = false)
+    public boolean getDeleted() {
         return isDeleted;
     }
 
@@ -134,5 +133,11 @@ public class User extends BaseEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, email, password, dateRegistered);
+    }
+
+    @Transient
+    @Override
+    public boolean isDeleted() {
+        return isDeleted;
     }
 }
